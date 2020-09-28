@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class QuanLyThiSinhImpl implements QuanLyThiSinh{
-    private static Map<Long, ThiSinh> danhSachThiSinh=new HashMap<>();
+    private static final Map<Long, ThiSinh> danhSachThiSinh=new HashMap<>();
     public static int idThiSinh=2;
 
     static {
@@ -35,7 +35,7 @@ public class QuanLyThiSinhImpl implements QuanLyThiSinh{
     }
     @Override
     public List<ThiSinh> getAll() {
-        return new ArrayList<ThiSinh>(danhSachThiSinh.values());
+        return new ArrayList<>(danhSachThiSinh.values());
     }
 
     @Override

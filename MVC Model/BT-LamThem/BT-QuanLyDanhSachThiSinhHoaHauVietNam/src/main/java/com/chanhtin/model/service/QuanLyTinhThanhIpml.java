@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class QuanLyTinhThanhIpml implements QuanLyTinhThanh{
-    private static Map<Long, TinhThanh> danhSachTinhThanh=new HashMap<>();
+    private static final Map<Long, TinhThanh> danhSachTinhThanh=new HashMap<>();
     public static int count=63;
     static {
         danhSachTinhThanh.put(1L,new TinhThanh(1L,"An Giang"));
