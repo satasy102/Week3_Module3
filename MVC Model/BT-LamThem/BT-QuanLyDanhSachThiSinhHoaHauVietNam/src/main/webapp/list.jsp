@@ -12,7 +12,9 @@
     <title>Danh sách thí sinh đăng ký</title>
 </head>
 <body>
-<a href="/?action=create"> Đăng ký </a> <br>
+
+<h1>Danh sách thí sinh đăng ký</h1>
+<a href="?action=create"> Đăng ký </a> <br>
 
 
 <table border="1" cellspacing="0">
@@ -36,7 +38,7 @@
     <tbody>
     <c:forEach items="${listThiSinh}" var="thiSinh">
         <tr>
-            <td><a href="/?action=view&id=${thiSinh.id}">
+            <td><a href="?action=view&id=${thiSinh.id}">
                     ${thiSinh.hoTen}</a>
             </td>
             <td>${thiSinh.ngaySinh}
@@ -53,7 +55,7 @@
             </td>
             <td> <img src="<c:url value='${thiSinh.anhCaNhan}'/>" alt="anh" width="50px" height="50px">
             </td>
-            <td><a href="/?action=xetduyet&id=${thiSinh.id}">
+            <td><a href="?action=xetduyet&id=${thiSinh.id}">
                 <c:choose>
                     <c:when test = "${thiSinh.duyet==true}">
                         <c:out value = "Đã duyệt"/>
@@ -65,22 +67,26 @@
             </a>
             </td>
             <td>
-                <a href="/?action=update&id=${thiSinh.id}">Sửa/</a>
-                <a href="#" onclick="abc(${thiSinh.id},'${thiSinh.hoTen}',
-                        '${thiSinh.sdt}')">Xóa</a>
+                <a href="?action=update&id=${thiSinh.id}">Sửa/</a>
+                <a href="#" onclick="xoa(${thiSinh.id},'${thiSinh.hoTen}',
+                        '${thiSinh.sdt}',${thiSinh.duyet})">Xóa</a>
             </td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
 
-<a href="/?action=daduyet"> Danh sách đã được duyệt </a>
+<a href="?action=daduyet"> Danh sách đã được duyệt </a>
 <script>
-    function abc(id,name,phone){
+    function xoa(id,name,phone,isDuyet){
         let messenger= "Bạn có chắc xóa "+name+" có số điện thoại: "+phone+" này không?";
 
         if(confirm(messenger)){
-            window.location = "/?action=delete&id="+id;
+            if(!isDuyet) {
+                alert("Xóa thành công.")
+                window.location = "?action=delete&id=" + id;
+            }
+            else alert("Hồ sơ này đã duyệt. Không thể xóa.")
         }
     }
 

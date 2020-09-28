@@ -22,7 +22,7 @@
 <p>
     <a href="/">Trở lại</a>
 </p>
-<form method="post" action="/?action=create">
+<form method="post" action="?action=create">
     <fieldset>
         <legend>Thông tin thí sinh</legend>
         <table>

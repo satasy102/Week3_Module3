@@ -79,7 +79,6 @@ public class QuanLyThiSinhServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("list.jsp");
             try {
                 dispatcher.forward(request, response);
-                response.sendRedirect("/");
             } catch (ServletException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -104,45 +103,70 @@ public class QuanLyThiSinhServlet extends HttpServlet {
     }
 
     private void createThiSinh(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            ThiSinh thiSinh = getThiSinh(request);
+
+            quanLyThiSinh.save(thiSinh);
+            request.setAttribute("message", "Thành công");
+
+        } catch (NumberFormatException e) {
+            request.setAttribute("message", "Các thông tin đều bắt buộc. Không được để trống!!");
+            long id = getId(request);
+            request.setAttribute("thiSinh", quanLyThiSinh.findById(id));
+        } finally {
+            try {
+                List<TinhThanh> listTinhThanh = quanLyTinhThanh.getAll();
+                request.setAttribute("listTinhThanh", listTinhThanh);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("add-edit.jsp");
+                dispatcher.forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private ThiSinh getThiSinh(HttpServletRequest request) {
         String ten = request.getParameter("ten");
         String ngaySinh = request.getParameter("ngaySinh");
         String diaChiCuTru = request.getParameter("diaChiCuTru");
         String sdt = request.getParameter("sdt");
         String email = request.getParameter("email");
-        String cmt=request.getParameter("cmt");
-        String ngheNghiep=request.getParameter("ngheNghiep");
-        String trinhDoVH=request.getParameter("trinhDoVH");
-        String danToc=request.getParameter("danToc");
-        String donViCongTac=request.getParameter("donViCongTac");
-        int chieuCao=Integer.parseInt(request.getParameter("chieuCao"));
-        int canNang=Integer.parseInt(request.getParameter("canNang"));
-        String nangKieuKhac=request.getParameter("nangKieuKhac");
-        String anhCaNhan=request.getParameter("anhCaNhan");
-        TinhThanh daiDienTinhThanh=quanLyTinhThanh.findById(Long.parseLong(request.getParameter("daiDienTinhThanh")));
+        String cmt = request.getParameter("cmt");
+        String ngheNghiep = request.getParameter("ngheNghiep");
+        String trinhDoVH = request.getParameter("trinhDoVH");
+        String danToc = request.getParameter("danToc");
+        String donViCongTac = request.getParameter("donViCongTac");
+        int chieuCao = Integer.parseInt(request.getParameter("chieuCao"));
+        int canNang = Integer.parseInt(request.getParameter("canNang"));
+        String nangKieuKhac = request.getParameter("nangKieuKhac");
+        String anhCaNhan = request.getParameter("anhCaNhan");
+        TinhThanh daiDienTinhThanh = quanLyTinhThanh.findById(Long.parseLong(request.getParameter("daiDienTinhThanh")));
 
-        Long id=0L;
-        String strID= request.getParameter("id");
-        if(strID.equals("")) {
-            id = Long.valueOf(QuanLyThiSinhImpl.idThiSinh + 1);
+        long id = getId(request);
+
+        if(isNull(ten, ngaySinh, sdt, email, cmt, ngheNghiep, danToc, anhCaNhan)) id =Long.parseLong("");
+
+        return new ThiSinh(id, ten, ngaySinh, diaChiCuTru, sdt, email, cmt, ngheNghiep, trinhDoVH, danToc,
+                donViCongTac, chieuCao, canNang, nangKieuKhac, anhCaNhan, daiDienTinhThanh);
+    }
+
+    private long getId(HttpServletRequest request) {
+        long id = 0L;
+        String strID = request.getParameter("id");
+        if (strID.equals("")) {
+            id = QuanLyThiSinhImpl.idThiSinh + 1;
         } else {
-            id=Long.parseLong(strID);
+            id = Long.parseLong(strID);
         }
+        return id;
+    }
 
-        ThiSinh thiSinh = new ThiSinh(id, ten, ngaySinh, diaChiCuTru, sdt, email, cmt,ngheNghiep,trinhDoVH,danToc,
-                donViCongTac,chieuCao,canNang,nangKieuKhac,anhCaNhan,daiDienTinhThanh);
-
-        quanLyThiSinh.save(thiSinh);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("add-edit.jsp");
-        List<TinhThanh> listTinhThanh=quanLyTinhThanh.getAll();
-        request.setAttribute("listTinhThanh",listTinhThanh);
-        request.setAttribute("message", "Thành công");
-        try {
-            dispatcher.forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private boolean isNull(String ten, String ngaySinh, String sdt, String email, String cmt, String ngheNghiep,
+                           String danToc, String anhCaNhan) {
+        return ten.equals("") || ngaySinh.equals("") || sdt.equals("") || email.equals("") || cmt.equals("") ||
+                ngheNghiep.equals("") || danToc.equals("") || anhCaNhan.equals("");
     }
 
     private void showUpdateForm(HttpServletRequest request, HttpServletResponse response) {

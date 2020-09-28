@@ -51,9 +51,7 @@ public class QuanLyThiSinhImpl implements QuanLyThiSinh{
 
     @Override
     public void delete(Long id) {
-        ThiSinh thiSinh= findById(id);
-            if (!thiSinh.isDuyet())
-                danhSachThiSinh.remove(id);
+        danhSachThiSinh.remove(id);
     }
 
     @Override
