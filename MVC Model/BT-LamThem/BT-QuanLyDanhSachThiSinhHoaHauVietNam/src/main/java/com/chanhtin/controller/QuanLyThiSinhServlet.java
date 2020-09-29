@@ -130,8 +130,8 @@ public class QuanLyThiSinhServlet extends HttpServlet {
         String trinhDoVH = request.getParameter("trinhDoVH");
         String danToc = request.getParameter("danToc");
         String donViCongTac = request.getParameter("donViCongTac");
-        int chieuCao = Integer.parseInt(request.getParameter("chieuCao"));
-        int canNang = Integer.parseInt(request.getParameter("canNang"));
+        float chieuCao = Float.parseFloat(request.getParameter("chieuCao"));
+        float canNang = Float.parseFloat(request.getParameter("canNang"));
         String nangKieuKhac = request.getParameter("nangKieuKhac");
         String anhCaNhan = request.getParameter("anhCaNhan");
         TinhThanh daiDienTinhThanh = quanLyTinhThanh.findById(Long.parseLong(request.getParameter("daiDienTinhThanh")));

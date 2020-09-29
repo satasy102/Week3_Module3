@@ -12,15 +12,15 @@ public class ThiSinh {
     private String trinhDoVanHoa;
     private String danToc;
     private String donViCongTac;
-    private int chieuCao;
-    private int canNang;
+    private float chieuCao;
+    private float canNang;
     private String nangKieuKhac;
     private String anhCaNhan;
     private TinhThanh daiDienTinhThanh;
     private boolean duyet=false;
 
     public ThiSinh(Long id, String hoTen, String ngaySinh, String diaChiCuTru, String sdt, String email, String cmt, String ngheNghiep,
-                   String trinhDoVanHoa, String danToc, String donViCongTac, int chieuCao, int canNang,
+                   String trinhDoVanHoa, String danToc, String donViCongTac, float chieuCao, float canNang,
                    String nangKieuKhac, String anhCaNhan, TinhThanh daiDienTinhThanh) {
         this.id = id;
         this.hoTen = hoTen;
@@ -124,7 +124,7 @@ public class ThiSinh {
         this.donViCongTac = donViCongTac;
     }
 
-    public int getChieuCao() {
+    public float getChieuCao() {
         return chieuCao;
     }
 
@@ -132,7 +132,7 @@ public class ThiSinh {
         this.chieuCao = chieuCao;
     }
 
-    public int getCanNang() {
+    public float getCanNang() {
         return canNang;
     }
 
