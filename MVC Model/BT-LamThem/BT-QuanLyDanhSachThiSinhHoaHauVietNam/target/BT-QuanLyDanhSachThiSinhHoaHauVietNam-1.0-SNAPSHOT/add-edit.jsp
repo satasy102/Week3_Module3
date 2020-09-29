@@ -27,69 +27,78 @@
         <legend>Thông tin thí sinh</legend>
         <table>
             <tr>
-                <td>Họ tên: </td>
-                <td><input type="text" name="ten" id="ten" value="${requestScope['thiSinh'].getHoTen()}"></td>
+                <td>Họ tên:</td>
+                <td><input type="text" name="ten" id="ten" value="${requestScope['thiSinh'].getHoTen()}" required></td>
             </tr>
             <tr>
-                <td>Ngày sinh: </td>
-                <td><input type="text" name="ngaySinh" id="ngaySinh" value="${requestScope['thiSinh'].getNgaySinh()}"></td>
+                <td>Ngày sinh:</td>
+                <td><input type="text" name="ngaySinh" id="ngaySinh" value="${requestScope['thiSinh'].getNgaySinh()}" required>
+                </td>
             </tr>
             <tr>
-                <td>Địa chỉ: </td>
-                <td><input type="text" name="diaChiCuTru" id="diaChiCuTru" value="${requestScope['thiSinh'].getDiaChiCuTru()}"></td>
+                <td>Địa chỉ:</td>
+                <td><input type="text" name="diaChiCuTru" id="diaChiCuTru"
+                           value="${requestScope['thiSinh'].getDiaChiCuTru()}" required></td>
             </tr>
             <tr>
-                <td>Số điện thoại : </td>
-                <td><input type="text" name="sdt" id="sdt" value="${requestScope['thiSinh'].getSdt()}"></td>
+                <td>Số điện thoại :</td>
+                <td><input type="text" name="sdt" id="sdt" value="${requestScope['thiSinh'].getSdt()}" required></td>
             </tr>
             <tr>
-                <td>Email: </td>
-                <td><input type="text" name="email" id="email" value="${requestScope['thiSinh'].getEmail()}"></td>
+                <td>Email:</td>
+                <td><input type="email" name="email" id="email" value="${requestScope['thiSinh'].getEmail()}" required></td>
             </tr>
             <tr>
-                <td>Chứng minh thư: </td>
-                <td><input type="text" name="cmt" id="cmt" value="${requestScope['thiSinh'].getCmt()}"></td>
+                <td>Chứng minh thư:</td>
+                <td><input type="text" name="cmt" id="cmt" value="${requestScope['thiSinh'].getCmt()}" required></td>
             </tr>
             <tr>
-                <td>Nghề nghiệp: </td>
-                <td><input type="text" name="ngheNghiep" id="ngheNghiep" value="${requestScope['thiSinh'].getNgheNghiep()}"></td>
+                <td>Nghề nghiệp:</td>
+                <td><input type="text" name="ngheNghiep" id="ngheNghiep"
+                           value="${requestScope['thiSinh'].getNgheNghiep()}" required></td>
             </tr>
             <tr>
-                <td>Trình độ văn hóa: </td>
-                <td><input type="text" name="trinhDoVH" id="trinhDoVH" value="${requestScope['thiSinh'].getTrinhDoVanHoa()}"></td>
+                <td>Trình độ văn hóa:</td>
+                <td><input type="text" name="trinhDoVH" id="trinhDoVH"
+                           value="${requestScope['thiSinh'].getTrinhDoVanHoa()}" required></td>
             </tr>
             <tr>
-                <td>Dân tộc: </td>
-                <td><input type="text" name="danToc" id="danToc" value="${requestScope['thiSinh'].getDanToc()}"></td>
+                <td>Dân tộc:</td>
+                <td><input type="text" name="danToc" id="danToc" value="${requestScope['thiSinh'].getDanToc()}" required></td>
             </tr>
             <tr>
-                <td>Đơn vị công tác: </td>
-                <td><input type="text" name="donViCongTac" id="donViCongTac" value="${requestScope['thiSinh'].getDonViCongTac()}"></td>
+                <td>Đơn vị công tác:</td>
+                <td><input type="text" name="donViCongTac" id="donViCongTac"
+                           value="${requestScope['thiSinh'].getDonViCongTac()}" required></td>
             </tr>
             <tr>
-                <td>Chiều cao: </td>
-                <td><input type="text" name="chieuCao" id="chieuCao" value="${requestScope['thiSinh'].getChieuCao()}"></td>
+                <td>Chiều cao:</td>
+                <td><input type="text" name="chieuCao" id="chieuCao" value="${requestScope['thiSinh'].getChieuCao()}" required>
+                </td>
             </tr>
             <tr>
-                <td>Cân nặng: </td>
-                <td><input type="text" name="canNang" id="canNang" value="${requestScope['thiSinh'].getCanNang()}"></td>
+                <td>Cân nặng:</td>
+                <td><input type="text" name="canNang" id="canNang" value="${requestScope['thiSinh'].getCanNang()}" required></td>
             </tr>
             <tr>
-                <td>Năng khiếu khác: </td>
-                <td><input type="text" name="nangKieuKhac" id="nangKieuKhac" value="${requestScope['thiSinh'].getNangKieuKhac()}"></td>
+                <td>Năng khiếu khác:</td>
+                <td><input type="text" name="nangKieuKhac" id="nangKieuKhac"
+                           value="${requestScope['thiSinh'].getNangKieuKhac()}" required></td>
             </tr>
             <tr>
-                <td>Ảnh cá nhân: </td>
-                <td><input type="text" name="anhCaNhan" id="anhCaNhan" value="${requestScope['thiSinh'].getAnhCaNhan()}"></td>
+                <td>Ảnh cá nhân:</td>
+                <td><input type="text" name="anhCaNhan" id="anhCaNhan"
+                           value="${requestScope['thiSinh'].getAnhCaNhan()}" required></td>
+
             </tr>
             <tr>
-                <td>Đại diện tỉnh thành: </td>
-                <td><select  name="daiDienTinhThanh" id="daiDienTinhThanh">
-                        <option value="${thiSinh.daiDienTinhThanh.getIdTinh()}">${thiSinh.daiDienTinhThanh.getTenTinh()}</option>
-                        <c:forEach items="${listTinhThanh}" var="tinhThanh">
-                            <option value="${tinhThanh.idTinh}">${tinhThanh.tenTinh}</option>
-                        </c:forEach>
-                    </select>
+                <td>Đại diện tỉnh thành:</td>
+                <td><select name="daiDienTinhThanh" id="daiDienTinhThanh">
+                    <option value="${thiSinh.daiDienTinhThanh.getIdTinh()}">${thiSinh.daiDienTinhThanh.getTenTinh()}</option>
+                    <c:forEach items="${listTinhThanh}" var="tinhThanh">
+                        <option value="${tinhThanh.idTinh}">${tinhThanh.tenTinh}</option>
+                    </c:forEach>
+                </select>
                 </td>
             </tr>
             <tr>
